@@ -3,16 +3,31 @@
 	
 	window.Finestra = function(options) {
 		
+		var addPx = function(val) {
+			if (!isNaN(val)) { val += "px"; }
+			return val;
+		}
+		
 		var options = options || {};
-		
+
 		this.autoplay = options.autoplay || false;
+		this.height = addPx(options.height) || "324px";
 		this.player_embedded = false;
+		this.width = addPx(options.width) || "576px";
 		
+		// container
+		this.container = document.createElement("div");
+		this.container.style.height = this.height;
+		this.container.style.width = this.width;
+		
+		// player
 		this.player = document.createElement("video");
 		this.player.setAttribute("controls", "controls");
-		this.player.setAttribute("width", "576px");
-		this.player.setAttribute("height", "324px");
+		this.player.setAttribute("width", "100%");
+		this.player.setAttribute("height", "100%");
 		if (this.autoplay) { this.player.setAttribute("autoplay", "autoplay"); }
+		this.container.appendChild(this.player);
+	
 	};
 	
 	Finestra.prototype.play = function(options) {
@@ -47,7 +62,7 @@
 		
 		if (!this.player_embedded) {
 			this.player_embedded = true;
-			document.getElementsByTagName("body")[0].appendChild(this.player);
+			document.getElementsByTagName("body")[0].appendChild(this.container);
 		}
 	};
 	

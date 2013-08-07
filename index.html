@@ -10,8 +10,12 @@
 
 		<script src="scripts/finestra.js"></script>
 		<script>
-
-		var videoPlayer1 = new Finestra();
+		
+		var options = {
+			"width": 768,
+			"height": 432
+		};
+		var videoPlayer1 = new Finestra(options);
 		videoPlayer1.play({
 			"poster": "http://publicdev.appalabs.com/assets/image/10_28_2012/DSC_0879.jpg",
 			"source": {
