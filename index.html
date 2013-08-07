@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<meta charset="utf-8" />
+		<title>Finestra HTML5 Video</title>	
+		<!--<link href="styles/finestra.css" rel="stylesheet" />-->
+	</head>
+	<body>
+		<h1>Finestra HTML5 Video</h1>
+
+		<script src="scripts/finestra.js"></script>
+		<script>
+
+		var videoPlayer1 = new Finestra();
+		videoPlayer1.play({
+			"poster": "http://publicdev.appalabs.com/assets/image/10_28_2012/DSC_0879.jpg",
+			"source": {
+				"mp4": "http://publicdev.appalabs.com/assets/video/04_04_2011/IMG_0420.mp4video.mp4",
+				"webm": "http://publicdev.appalabs.com/assets/video/04_04_2011/IMG_0420.webmvp8.webm",
+				"ogv": "http://publicdev.appalabs.com/assets/video/04_04_2011/IMG_0420.theora.ogv"
+			}
+		});
+		
+		//var videoPlayer2 = new Finestra();
+		//videoPlayer2.play({
+		//	"poster": "http://media.video-cdn.espn.com/motion/2013/0807/dm_130807_ncf_interview_steve_spurrier/dm_130807_ncf_interview_steve_spurrier_default.jpg",
+		//	"source": {
+		//		"mp4": "http://vod.espn.go.com/motion/2013/0807/dm_130807_ncf_interview_steve_spurrier/dm_130807_ncf_interview_steve_spurrier_720p30_2896k.mp4"
+		//	}
+		//});
+		</script>
+	</body>
+</html>
