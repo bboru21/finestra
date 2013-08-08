@@ -7,31 +7,41 @@
 	</head>
 	<body>
 		<h1>Finestra HTML5 Video</h1>
-
+		
+		<div id="videoPlayerContainer"></div>
+		
+		<button onclick="javascript: videoPlayer.play(); return false;">play</button>
+		<button onclick="javascript: videoPlayer.pause(); return false;">pause</button>
+		
+		<!--<div id="videoPlayerContainer2"></div>
+		<button onclick="javascript: videoPlayer2.play(); return false;">play</button>
+		<button onclick="javascript: videoPlayer2.pause(); return false;">pause</button>-->
+		
 		<script src="scripts/finestra.js"></script>
 		<script>
 		
 		var options = {
-			"width": 768,
-			"height": 432
-		};
-		var videoPlayer1 = new Finestra(options);
-		videoPlayer1.play({
+			"containerId": "videoPlayerContainer",
 			"poster": "http://publicdev.appalabs.com/assets/image/10_28_2012/DSC_0879.jpg",
 			"source": {
 				"mp4": "http://publicdev.appalabs.com/assets/video/04_04_2011/IMG_0420.mp4video.mp4",
 				"webm": "http://publicdev.appalabs.com/assets/video/04_04_2011/IMG_0420.webmvp8.webm",
 				"ogv": "http://publicdev.appalabs.com/assets/video/04_04_2011/IMG_0420.theora.ogv"
-			}
-		});
+			},
+			"width": "30%"
+		};
+		var videoPlayer = new Finestra(options);
 		
-		//var videoPlayer2 = new Finestra();
-		//videoPlayer2.play({
+		//var options = {
+		//	"containerId": "videoPlayerContainer2",
 		//	"poster": "http://media.video-cdn.espn.com/motion/2013/0807/dm_130807_ncf_interview_steve_spurrier/dm_130807_ncf_interview_steve_spurrier_default.jpg",
 		//	"source": {
 		//		"mp4": "http://vod.espn.go.com/motion/2013/0807/dm_130807_ncf_interview_steve_spurrier/dm_130807_ncf_interview_steve_spurrier_720p30_2896k.mp4"
-		//	}
-		//});
+		//	},
+		//	"width": "30%"
+		//};
+		//var videoPlayer2 = new Finestra(options);
+		
 		</script>
 	</body>
 </html>

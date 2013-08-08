@@ -1,7 +1,25 @@
 (function() {
   "use strict";
 	
+	// begin browser feature detection methods
+	//function supports_video() {
+	//	return !!PLAYER.canPlayType;
+	//}
+
+	//function supports_h264_baseline_video() {
+	//	if (!supports_video()) { return false;  }
+	//	return PLAYER.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+	//}
+
+	//function supports_ogg_theora_video() {
+	//	if (!supports_video()) { return false; }
+	//	return PLAYER.canPlayType('video/ogg; codecs="theora, vorbis"');
+	//}
+	// end browser feature detection methods
+	
 	window.Finestra = function(options) {
+		
+		this.start_time = new Date().getTime();
 		
 		var addPx = function(val) {
 			if (!isNaN(val)) { val += "px"; }
@@ -16,7 +34,13 @@
 		this.width = addPx(options.width) || "576px";
 		
 		// container
-		this.container = document.createElement("div");
+		var containerId = options.containerId || "videoPlayerContainer_" + this.start_time;
+		this.container = document.getElementById(containerId);
+		if (!this.container) {
+			this.container = document.createElement("div");
+			this.container.setAttribute("id", containerId);
+			document.getElementsByTagName("body")[0].appendChild(this.container);
+		}
 		this.container.style.height = this.height;
 		this.container.style.width = this.width;
 		
@@ -26,19 +50,13 @@
 		this.player.setAttribute("width", "100%");
 		this.player.setAttribute("height", "100%");
 		if (this.autoplay) { this.player.setAttribute("autoplay", "autoplay"); }
-		this.container.appendChild(this.player);
-	
-	};
-	
-	Finestra.prototype.play = function(options) {
 		
-		var options = options || {};
-		
+		// poster image
 		this.poster = options.poster || null;
-		this.source = options.source || {};
-		
 		if (!!this.poster) { this.player.setAttribute("poster", this.poster); }
-
+		
+		// begin source tag logic
+		this.source = options.source || {};
 		if (typeof this.source.mp4 === "string") {
 			var mp4Source = document.createElement("source");
 			mp4Source.setAttribute("src", this.source.mp4 );
@@ -59,11 +77,17 @@
 			ogvSource.setAttribute("type", "video/ogg; codecs=theora, vorbis");
 			this.player.appendChild(ogvSource);
 		}
+		// end source tag logic
 		
-		if (!this.player_embedded) {
-			this.player_embedded = true;
-			document.getElementsByTagName("body")[0].appendChild(this.container);
-		}
+		this.container.appendChild(this.player);
 	};
 	
+	Finestra.prototype.play = function() {
+		this.player.play();
+	};
+	
+	Finestra.prototype.pause = function() {
+		this.player.pause();
+	};
+
 }());
