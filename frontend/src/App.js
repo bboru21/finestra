@@ -34,8 +34,6 @@ function App() {
       {videoFileMap && Object.keys(videoFileMap).map(k => (
         <button key={k} onClick={(event) => { playVideo(event, k); }}>{k}</button>
       ))}
-
-      <button onClick={(event) => {playVideo(event, 'top-gun')}}>Play Top Gun</button>
     </div>
   );
 }
