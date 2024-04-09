@@ -20,10 +20,6 @@ class Cuepoint {
 // TODO remove cuepointsProp default value
 const VideoPlayer = ({
   videoId,
-  cuepoints: cuepointsProp=[
-    [5,10, CUEPOINT_MUTE],
-    [15,90, CUEPOINT_SEEK],
-  ],
 }) => {
 
   const videoRef = useRef(null);
@@ -36,11 +32,22 @@ const VideoPlayer = ({
     }
   });
 
-  // TODO this needs to be fixed
-  const [cuepoints, setCuepoints] = useState([]);
+  const [cuepoints, setCuepoints] = useState(null);
   useEffect(() => {
-    setCuepoints( cuepointsProp.map(c => new Cuepoint(...c)));
-  }, []);
+    const cuepointsFetch = async () => {
+      try {
+        const jsonData = await (await fetch(`http://localhost:3001/videos/data/cuepoints/${encodeURIComponent(videoId)}`)).json();
+        const rawCuepoints = jsonData.data;
+
+        setCuepoints(rawCuepoints.map(c => new Cuepoint(...c)));
+      } catch(error) {
+        console.error(error);
+        setCuepoints([]);
+      }
+    }
+
+    cuepointsFetch();
+  }, [videoId]);
 
   const processCuepoints = () => {
     cuepoints.forEach(c => {
@@ -66,19 +73,22 @@ const VideoPlayer = ({
     processCuepoints();
   }
 
-  return (
-    <video
-      ref={videoRef}
-      width='320'
-      height='240'
-      controls
-      autoPlay={false}
-      onTimeUpdate={(event) => { handleTimeUpdate(event); }}
-    >
-      <source src={`http://localhost:3001/videos/${videoId}`} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  );
+  return (cuepoints ? (
+      <video
+        ref={videoRef}
+        width='320'
+        height='240'
+        controls
+        autoPlay={false}
+        onTimeUpdate={(event) => { handleTimeUpdate(event); }}
+      >
+        <source src={`http://localhost:3001/videos/${videoId}`} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+  ) : (
+    <></>
+  ));
 };
 
 export default VideoPlayer;

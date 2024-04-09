@@ -24,6 +24,19 @@ app.get('/videos/data', (req, res) => {
   return res.status(200).json({ "data": videoFileMap });
 });
 
+app.get('/videos/data/cuepoints/:filename', (req, res) => {
+  const fileName = req.params.filename;
+  const fullFilePath = `./cuepoints/${fileName}.json`;
+
+  try {
+    const file = fs.readFileSync(fullFilePath, 'utf-8');
+    return res.status(200).json(JSON.parse(file));
+  } catch(error) {
+    console.log(error);
+    return res.status(404).send('File not found');
+  }
+});
+
 app.get('/videos/:filename', (req, res) => {
   const fileName = req.params.filename;
   const filePath = videoFileMap[fileName];
