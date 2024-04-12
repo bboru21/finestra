@@ -14,7 +14,7 @@ try {
 }
 
 const videoFileMap = {};
-data.videos.forEach(v => {
+data.videos.sort().forEach(v => {
   const name = v.split('/').slice(-1)[0].split('.')[0];
   videoFileMap[name] = v;
 });

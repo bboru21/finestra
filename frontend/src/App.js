@@ -31,9 +31,19 @@ function App() {
         </VideoPlayer>
       )} <br />
 
+      <div class="videoList">
       {videoFileMap && Object.keys(videoFileMap).map(k => (
-        <button key={k} onClick={(event) => { playVideo(event, k); }}>{k}</button>
+        <div>
+          <button
+            key={k}
+            onClick={(event) => { playVideo(event, k); }}
+            className="unstyledButton"
+          >
+            {k}
+          </button>
+        </div>
       ))}
+      </div>
     </div>
   );
 }

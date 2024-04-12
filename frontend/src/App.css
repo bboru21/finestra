@@ -36,3 +36,52 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* begin local global styles */
+.unstyledButton {
+  border: 0;
+  outline: unset !important;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+  cursor: pointer;
+  color: unset;
+}
+/* begin local global styles */
+
+
+/* begin local custom styles */
+.App {
+  background-color:#051a45;
+  min-height: 100vh;
+}
+
+.videoList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.videoList > div {
+  display: flex;
+  flex-basis: 25%;
+}
+
+.videoList > div button {
+  width: 100%;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+/* end local custom styles */
