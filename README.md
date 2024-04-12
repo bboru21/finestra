@@ -1,5 +1,5 @@
 # finestra
-Video player for watching movies with the kiddos.
+Video server and player written in Node/React for watching edited movies with the kiddos.
 
 # Start Services
 
