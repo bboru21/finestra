@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
+require('dotenv').config({ path: '../.env' });
 
 
 const app = express();
@@ -72,6 +73,6 @@ app.get('/videos/:filename', (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`server is listening on port ${process.env.PORT}`);
+app.listen(process.env.BACKEND_PORT, () => {
+  console.log(`server is listening on port ${process.env.BACKEND_PORT}`);
 });
