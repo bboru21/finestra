@@ -1,3 +1,5 @@
-*/input/*
-*/output/*
+**/input/*
+!**/input/README.md
+**/output/*
+!**/output/README.md
 venv
