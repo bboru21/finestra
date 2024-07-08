@@ -2,3 +2,4 @@ assemblyai==0.26.0
 click==8.1.7
 python-dotenv==1.0.1
 srt==3.5.3
+syllables==1.0.9

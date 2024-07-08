@@ -16,4 +16,4 @@ Python scripts for transcribing `.srt` files from video files, and parsing them 
 
 # Parse Captions
 
-  (venv) scripts$ python bin/scripts.py run_parse_captions --filename=='Top Gun.srt'
+  (venv) scripts$ python bin/scripts.py run_parse_captions --filename='Top Gun.srt'
